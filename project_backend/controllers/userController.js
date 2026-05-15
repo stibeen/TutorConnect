@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Tutor = require("../models/Tutor");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const admin = require("../firebase");
 
 //GET all students
 const getStudents = async (req, res) => {
@@ -158,68 +157,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Google login - STUDENTS ONLY
-const loginGoogle = async (req, res) => {
-  try {
-    const { idToken } = req.body;
-
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    const { email, name, picture } = decodedToken;
-
-    // Check if email exists as a tutor
-    const existingTutor = await Tutor.findOne({ email });
-    if (existingTutor) {
-      return res.status(403).json({
-        error: "Tutors must use email/password login",
-      });
-    }
-
-    let user = await User.findOne({ email });
-
-    if (!user) {
-      user = await User.create({
-        name,
-        email,
-        role: "student", // Force student role
-        profileImage: picture,
-        authProvider: "google",
-      });
-    } else if (user.role === "tutor") {
-      return res.status(403).json({
-        error: "Tutor accounts cannot use Google login",
-      });
-    }
-
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d", // Longer expiry for better UX
-    });
-
-    res.status(200).json({
-      message: "Google login successful",
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        profileImage: user.profileImage,
-        authProvider: user.authProvider,
-      },
-    });
-  } catch (err) {
-    console.error(err);
-
-    if (err.code === "auth/id-token-expired") {
-      return res.status(401).json({ error: "Google token expired" });
-    }
-
-    res.status(500).json({
-      error: "Google authentication failed",
-      details: process.env.NODE_ENV === "development" ? err.message : undefined,
-    });
-  }
-};
-
 const updateEmail = async (req, res) => {
   try {
     const { newEmail } = req.body;
@@ -343,7 +280,6 @@ module.exports = {
   getStudent,
   createUser,
   loginUser,
-  loginGoogle,
   updateEmail,
   updatePassword,
   updateProfileImage,

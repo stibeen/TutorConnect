@@ -9,7 +9,6 @@ router.get("/:id", userController.getStudent);
 router.post("/register", userController.createUser);
 router.patch('/:id/status', authenticate, userController.updateIsActive);
 router.post("/login", userController.loginUser);
-router.post("/googleLogin", userController.loginGoogle);
 router.patch('/email', authenticate, userController.updateEmail);
 router.patch('/password', authenticate, userController.updatePassword);
 router.patch('/profile-image', authenticate, upload.single("profile"), userController.updateProfileImage)
