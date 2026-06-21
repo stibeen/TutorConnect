@@ -782,8 +782,8 @@ const AdminPaymentRecords = () => {
         </div>
         
         <div class="logos-right">
-          <img src="/images/bagong-pilipinas-logo.png" alt="Bagong Pilipinas Logo" class="right-logo">
-          <img src="/images/ccis-logo.png" alt="CCIS Logo" class="right-logo">
+          <img src="https://github.com/stibeen/TutorConnect/blob/main/project_frontend/images/bagong-pilipinas-logo.png?raw=true" alt="Bagong Pilipinas Logo" class="right-logo">
+          <img src="https://github.com/stibeen/TutorConnect/blob/main/project_frontend/images/ccis-logo.png?raw=true" alt="CCIS Logo" class="right-logo">
         </div>
       </div>
 
