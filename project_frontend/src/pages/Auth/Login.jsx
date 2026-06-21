@@ -287,6 +287,15 @@ export default function Login() {
               </a>
             </p>
           </div>
+          
+          <div className="mt-6">
+            <p className="text-center text-sm">
+              <a 
+              href="/loginAdmin"
+              className="font-medium text-[#3b2762] hover:text-[#efc940] hover:underline transition-colors"
+            >Login as Admin</a> 
+            </p>
+          </div>
         </div>
 
         {/* Optional decorative element */}
