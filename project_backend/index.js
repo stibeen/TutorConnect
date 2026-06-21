@@ -37,6 +37,7 @@ const corsOptions = {
     "http://172.30.8.101:5173",
     "http://192.168.1.25:5173",
     "http://172.16.103.245:5173",
+    "https://tutor-connect-woad.vercel.app/",
   ],
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
