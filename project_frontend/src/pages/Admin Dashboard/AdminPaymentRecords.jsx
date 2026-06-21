@@ -769,7 +769,7 @@ const AdminPaymentRecords = () => {
         <!-- BISU University Header -->
       <div class="header">
         <div class="left-section">
-          <img src="/images/bisu-logo.png" alt="BISU Logo" class="logo">
+          <img src="https://github.com/stibeen/TutorConnect/blob/main/project_frontend/images/bisu-logo.png?raw=true" alt="BISU Logo" class="logo">
           <div class="header-content">
             <p class="header-line1">Republic of the Philippines</p>
             <p class="header-line2">BOHOL ISLAND STATE UNIVERSITY</p>
